@@ -3,14 +3,15 @@ package net.w00tc0d3.AdvancedLiquidStorage;
 import org.lwjgl.opengl.GL11;
 
 import net.minecraft.client.gui.inventory.GuiContainer;
+import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.Container;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ResourceLocation;
 
 public class GuiAdvancedLiquidStorage extends GuiContainer {
 
-	public GuiAdvancedLiquidStorage(Container par1Container) {
-		super(par1Container);
+	public GuiAdvancedLiquidStorage(TileAdvancedLiquidStorage tileEntity) {
+		super(new ContainerAdvancedLiquidStorage(tileEntity));
 	}
 
 	@Override

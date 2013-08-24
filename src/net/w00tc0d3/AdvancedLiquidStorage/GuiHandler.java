@@ -2,6 +2,7 @@ package net.w00tc0d3.AdvancedLiquidStorage;
 
 
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.Container;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
@@ -23,7 +24,7 @@ public class GuiHandler implements IGuiHandler {
 			int x, int y, int z) {
         TileEntity tileEntity = world.getBlockTileEntity(x, y, z);
         if(tileEntity instanceof TileAdvancedLiquidStorage){
-                return new GuiAdvancedLiquidStorage(new ContainerAdvancedLiquidStorage((TileAdvancedLiquidStorage) tileEntity));
+                return new GuiAdvancedLiquidStorage((TileAdvancedLiquidStorage) tileEntity);
         }
         return null;
 	}

@@ -10,27 +10,33 @@ import net.minecraft.inventory.Slot;
 import net.minecraft.inventory.SlotFurnace;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.tileentity.TileEntityFurnace;
+import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.FluidTankInfo;
 
 public class ContainerAdvancedLiquidStorage extends Container {
 	
 	private TileAdvancedLiquidStorage storage;
+	private Fluid fluid;
 	private int fluidID;
 	private int amount;
-	private FluidStack fluid;
+	private FluidTankInfo fluidInfo;
 	
-    public ContainerAdvancedLiquidStorage(TileAdvancedLiquidStorage TileEntityStorage)
-    {
-        this.storage = TileEntityStorage;
-        this.fluid = TileEntityStorage.tank.getFluid();
-        this.fluidID = this.fluid.fluidID;
-        this.amount = this.fluid.amount;
-    }
+	public ContainerAdvancedLiquidStorage(TileAdvancedLiquidStorage tileEntityStorage) {
+        this.storage = tileEntityStorage;
+        this.fluidInfo = tileEntityStorage.tank.getInfo();
+        if(this.fluidInfo != null) {
+            this.fluid = fluidInfo.fluid.getFluid();
+            this.fluidID = this.fluid.getID();
+            this.amount = this.fluidInfo.fluid.amount;
+        } else {
+        	return;
+        }
+	}
 
 	@Override
 	public boolean canInteractWith(EntityPlayer entityplayer) {
-		return false;
+		return true;
 	}
 	
     public void detectAndSendChanges()
