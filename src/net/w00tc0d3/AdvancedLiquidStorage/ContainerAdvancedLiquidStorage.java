@@ -17,21 +17,20 @@ import net.minecraftforge.fluids.FluidTankInfo;
 public class ContainerAdvancedLiquidStorage extends Container {
 	
 	private TileAdvancedLiquidStorage storage;
-	private Fluid fluid;
 	private int fluidID;
 	private int amount;
-	private FluidTankInfo fluidInfo;
+	FluidStack fluid;
 	
 	public ContainerAdvancedLiquidStorage(TileAdvancedLiquidStorage tileEntityStorage) {
         this.storage = tileEntityStorage;
-        this.fluidInfo = tileEntityStorage.tank.getInfo();
-        if(this.fluidInfo != null) {
-            this.fluid = fluidInfo.fluid.getFluid();
-            this.fluidID = this.fluid.getID();
-            this.amount = this.fluidInfo.fluid.amount;
-        } else {
+        this.fluid = storage.tank.getFluid();
+        if(fluid == null || fluid.amount <= 0)
         	return;
-        }
+        
+        this.amount = fluid.amount;
+        this.fluidID = fluid.fluidID;
+        
+        System.out.println(amount);
 	}
 
 	@Override
