@@ -23,14 +23,21 @@ public class ContainerAdvancedLiquidStorage extends Container {
 	
 	public ContainerAdvancedLiquidStorage(TileAdvancedLiquidStorage tileEntityStorage) {
         this.storage = tileEntityStorage;
+        if(storage == null || storage.tank == null)
+        	return;
+        
         this.fluid = storage.tank.getFluid();
+        this.fluidID = storage.tank.getFluid().fluidID;
+        this.amount = storage.tank.getFluidAmount();
+        
+        /* this.fluid = storage.tank.getFluid();
         if(fluid == null || fluid.amount <= 0)
         	return;
         
         this.amount = fluid.amount;
         this.fluidID = fluid.fluidID;
         
-        System.out.println(amount);
+        System.out.println(amount); */
 	}
 
 	@Override
